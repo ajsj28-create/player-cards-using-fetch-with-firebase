@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Player Cards using fetch</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row my-5">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                <div class="card color-light">
+                    <div class="card-body">
+                        <form id="playersForm">
+                            <div class="form-group">
+                                <input required id="name" type="text" placeholder="Player Name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input required id="nickname" type="text" placeholder="Nick Name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input required id="role" type="text" placeholder="Role" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input required id="jerseyNumber" type="text" placeholder="Jersey No." class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="photoUrl"><a href="https://www.bcci.tv/international/men/players" target="_blank">Go to BCCI page for photo url</a></label>
+                                <input required id="photoUrl" type="text" placeholder="Paste photo url here" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="selectedColor">Select Card Color</label>
+                                <select required id="selectedColor" type="text" class="form-control">
+                                    <option value="purpleVoilet">Purple Voilet</option>
+                                    <option value="skyBlue">Sky Blue</option>
+                                    <option value="yellowGreen">Yellow Green</option>
+                                    <option value="yellowOrange">Yellow Orange</option>
+                                </select>
+                            </div>
+                            <button id="addBtn" type="submit" class="btn btn-primary btn-block">Add New Card</button>
+                            <button id="updateBtn" type="button" class="btn btn-primary btn-block d-none">Update Card</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8 col-sm-6">
+                <div id="cardsContainer" class="row cardsContainer">
+                    <!-- <div class="col-lg-4 col-md-6">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h3 class="m-0 font-weight-bolder">IND</h3>
+                                <a href="https://www.bcci.tv/" target="_blank"><img src="https://documents.bcci.tv/web-images/bcci-logo-rounded.png" alt="BCCI Logo"></a>
+                            </div>
+                            <div class="card-body text-center skyBlue">
+                                <figure><img src="https://documents.bcci.tv/resizedimageskirti/164_compress.png" alt="Img" title="Virat Kohli"></figure>
+                                <h4 class="m-0">Virat Kohli</h4>
+                                <h5 class="m-0">King</h5>
+                                <i onclick="onEdit(this)" role="button" class="fa-solid fa-pen editIcon"></i>
+                                <i onclick="onDelete(this)" role="button" class="fa-solid fa-trash deleteIcon"></i>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between">
+                                <span>Batsman</span>
+                                <span>#18</span>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="loader d-none" id="loader">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./assets/js/app.js"></script>
+</body>
+</html>
