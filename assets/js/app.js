@@ -153,7 +153,7 @@ const updateCardUi = (obj) => {
     updateCol.querySelector('.card-body h4').innerHTML = obj.name
     updateCol.querySelector('.card-body h5').innerHTML = obj.nickname
     updateCol.querySelector('.card-footer').children[0].innerHTML = obj.role
-    updateCol.querySelector('.card-footer').children[1].innerHTML = obj.jerseyNumber
+    updateCol.querySelector('.card-footer').children[1].innerHTML = `#${obj.jerseyNumber}`
     toggleButtons()
     let scrollPosition = localStorage.getItem('scrollPosition')
     window.scroll({
