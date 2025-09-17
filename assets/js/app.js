@@ -15,8 +15,7 @@ const allData_url = `https://crudbyaniket-default-rtdb.asia-southeast1.firebased
 const objToArray = (obj) => {
     let dataArray = []
     for(const key in obj){
-        obj[key].id = key
-        dataArray.push(obj[key])
+        dataArray.push({...obj[key], id: key})
     }
     return dataArray
 };
@@ -76,7 +75,6 @@ const makeApiCall = (method, url, body) => {
       })
       .finally(() => {
         hideLoader()
-        playersForm.reset()
       })
 };
 
@@ -86,7 +84,7 @@ const templating = (arr) => {
         result += `
                     <div class="col-lg-4 col-md-6 mb-3" id="${obj.id}">
                         <div class="card">
-                            <div class="card-header d-flex justify-content-between align-items-center color-white">
+                            <div class="card-header d-flex justify-content-between align-items-center">
                                 <h3 class="m-0 font-weight-bolder">IND</h3>
                                 <a href="https://www.bcci.tv/" target="_blank"><img src="https://documents.bcci.tv/web-images/bcci-logo-rounded.png" alt="BCCI Logo"></a>
                             </div>
@@ -97,7 +95,7 @@ const templating = (arr) => {
                                 <i onclick="onEdit(this)" role="button" class="fa-solid fa-pen editIcon"></i>
                                 <i onclick="onDelete(this)" role="button" class="fa-solid fa-trash deleteIcon"></i>
                             </div>
-                            <div class="card-footer d-flex justify-content-between color-white">
+                            <div class="card-footer d-flex justify-content-between">
                                 <span>${obj.role}</span>
                                 <span>#${obj.jerseyNumber}</span>
                             </div>
@@ -113,7 +111,7 @@ const createNewCard = (obj) => {
     newCol.id = obj.id
     newCol.innerHTML = `
                         <div class="card">
-                            <div class="card-header d-flex justify-content-between align-items-center color-white">
+                            <div class="card-header d-flex justify-content-between align-items-center">
                                 <h3 class="m-0 font-weight-bolder">IND</h3>
                                 <a href="https://www.bcci.tv/" target="_blank"><img src="https://documents.bcci.tv/web-images/bcci-logo-rounded.png" alt="BCCI Logo"></a>
                             </div>
@@ -124,7 +122,7 @@ const createNewCard = (obj) => {
                                 <i onclick="onEdit(this)" role="button" class="fa-solid fa-pen editIcon"></i>
                                 <i onclick="onDelete(this)" role="button" class="fa-solid fa-trash deleteIcon"></i>
                             </div>
-                            <div class="card-footer d-flex justify-content-between color-white">
+                            <div class="card-footer d-flex justify-content-between">
                                 <span>${obj.role}</span>
                                 <span>#${obj.jerseyNumber}</span>
                             </div>
@@ -180,6 +178,7 @@ const onCardAdd = (eve) => {
     let newObj = objFromControls()
     makeApiCall('POST', `${allData_url}.json`, newObj)
       .then(data => {
+        playersForm.reset()
         createNewCard({...newObj, id: data.name})
       })
 };
@@ -202,6 +201,7 @@ const onCardUpdate = () => {
     let updatedObj = objFromControls()
     makeApiCall('PATCH', update_url, updatedObj)
       .then(data => {
+        playersForm.reset()
         updateCardUi({...data, id: updateId})
       })
 };
